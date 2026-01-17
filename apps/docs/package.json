@@ -1,11 +1,19 @@
 {
   "name": "docs",
-  "version": "0.0.0",
-  "private": true,
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "dev": "echo 'Add dev script here'",
-    "build": "echo 'Add build script here'",
-    "test": "echo 'Add test script here'",
-    "lint": "echo 'Add lint script here'"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@repo/constants": "workspace:*",
+    "@astrojs/starlight": "^0.37.3",
+    "astro": "^5.6.1",
+    "sharp": "^0.34.2",
+    "starlight-theme-flexoki": "^0.2.2"
   }
 }

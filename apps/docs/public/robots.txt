@@ -1,1 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rotunde-docs.vercel.app/sitemap-index.xml
+
 # Algolia-Crawler-Verif: D6DE0FAA32CEF97A

@@ -20,6 +20,9 @@ importers:
 
   apps/docs:
     dependencies:
+      '@astrojs/sitemap':
+        specifier: ^3.7.0
+        version: 3.7.0
       '@astrojs/starlight':
         specifier: ^0.37.3
         version: 0.37.3(astro@5.16.11)

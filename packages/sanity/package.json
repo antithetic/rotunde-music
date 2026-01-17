@@ -1,11 +1,31 @@
 {
-  "name": "sanity",
+  "name": "@repo/sanity",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "dev": "echo 'Add dev script here'",
-    "build": "echo 'Add build script here'",
-    "test": "echo 'Add test script here'",
-    "lint": "echo 'Add lint script here'"
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@sanity/vision": "^5.4.0",
+    "react": "^19.1",
+    "react-dom": "^19.1",
+    "sanity": "^5.4.0",
+    "sanity-plugin-media": "^4.1.1",
+    "styled-components": "^6.1.18"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@sanity/eslint-config-studio": "^6.0.0",
+    "@types/react": "^19.1",
+    "eslint": "^9.28",
+    "prettier": "^3.5",
+    "typescript": "^5.8"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "bracketSpacing": false,
+    "singleQuote": true
   }
 }

@@ -10,8 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@repo/constants": "workspace:*",
     "@astrojs/starlight": "^0.37.3",
+    "@astrojs/starlight-docsearch": "^0.6.1",
+    "@repo/constants": "workspace:*",
     "astro": "^5.6.1",
     "sharp": "^0.34.2",
     "starlight-theme-flexoki": "^0.2.2"

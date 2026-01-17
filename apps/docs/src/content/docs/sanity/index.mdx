@@ -1,0 +1,54 @@
+---
+title: Sanity CMS Overview
+description: Overview of the Sanity CMS configuration and setup for Rotunde Music
+---
+
+## Project Configuration
+
+The Sanity CMS package (`@repo/sanity`) is a shared package that provides the Sanity Studio configuration for the Rotunde Music project.
+
+### Project Details
+
+- **Project ID**: `dm359cdv`
+- **Dataset**: `production`
+- **Studio Title**: Rotunde Music
+- **Package**: `@repo/sanity`
+
+### Architecture
+
+The Sanity configuration is organized as a monorepo package that can be shared across multiple applications:
+
+- **Package Location**: `packages/sanity/`
+- **Studio App**: `apps/studio/` (uses the shared package)
+- **Schema Types**: Defined in `packages/sanity/src/schemaTypes/`
+- **Structure**: Custom structure configuration in `packages/sanity/src/structure/`
+
+### Core Tools
+
+The Sanity Studio includes the following built-in tools:
+
+- **Structure Tool**: Default document structure and navigation
+- **Vision Tool**: GROQ query interface for testing queries
+
+### Schema Types
+
+#### Documents
+
+- **Settings** (`settings`): Singleton document for site-wide settings
+  - Title (read-only, auto-populated)
+  - URL
+  - Description
+  - Keywords (array)
+
+#### Objects
+
+Currently no custom object types are defined.
+
+### Plugins
+
+The project uses the following Sanity plugins:
+
+- [Sanity Media Browser](./plugins#sanity-media-browser) - Enhanced media management
+- [Singleton Management](./plugins#singleton-management) - Tools for managing singleton documents
+
+See the [Plugins](./plugins) page for detailed information about each plugin.

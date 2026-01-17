@@ -1,0 +1,141 @@
+---
+title: Sanity Plugins
+description: A reference page for installed Sanity plugins and tools
+---
+
+## Overview
+
+This project uses several Sanity plugins to enhance the Studio experience and provide additional functionality for content management.
+
+## Installed Plugins
+
+### Sanity Media Browser
+
+**Package**: `sanity-plugin-media`  
+**Version**: `^4.1.1`  
+**Plugin**: `media()`
+
+The Sanity Media Browser plugin provides an enhanced media management interface for handling images, videos, and other media assets in your Sanity Studio.
+
+#### Features
+
+- Improved media library browsing experience
+- Better organization and search capabilities for media assets
+- Enhanced media upload and management workflows
+- Support for various media types and formats
+
+#### Usage
+
+The plugin is automatically configured in the Sanity Studio configuration:
+
+```typescript
+import {media} from 'sanity-plugin-media'
+
+export default defineConfig({
+  plugins: [media()],
+})
+```
+
+#### Documentation
+
+For more information, visit the [official plugin documentation](https://github.com/sanity-io/sanity-plugin-media).
+
+---
+
+### Singleton Management
+
+**Package**: `sanity-plugin-singleton-management`  
+**Version**: `^1.0.6`  
+**Plugin**: `singletonTools()`
+
+The Singleton Management plugin provides tools and utilities for managing singleton documents in Sanity. Singleton documents are unique documents that should only exist once in your dataset.
+
+#### Features
+
+- Automatic singleton document management
+- Prevents duplicate singleton documents
+- Simplified singleton document creation and editing
+- Better UX for singleton document types
+
+#### Usage
+
+The plugin is configured in the Sanity Studio:
+
+```typescript
+import {singletonTools} from 'sanity-plugin-singleton-management'
+
+export default defineConfig({
+  plugins: [singletonTools()],
+})
+```
+
+#### Singleton Documents in This Project
+
+The following document types are configured as singletons:
+
+- **Settings** (`settings`): Site-wide configuration and metadata
+
+To mark a document as a singleton, add the `singleton: true` option in the document type definition:
+
+```typescript
+export const settings = defineType({
+  name: 'settings',
+  type: 'document',
+  options: {
+    singleton: true,
+  },
+  // ... fields
+})
+```
+
+#### Documentation
+
+For more information, visit the [official plugin documentation](https://github.com/sanity-io/sanity-plugin-singleton-management).
+
+---
+
+## Built-in Tools
+
+### Structure Tool
+
+The Structure Tool (`structureTool()`) is Sanity's default document structure and navigation interface. It provides:
+
+- Document type navigation
+- Document listing and filtering
+- Default document management interface
+
+### Vision Tool
+
+The Vision Tool (`visionTool()`) provides a GROQ query interface for:
+
+- Testing GROQ queries
+- Exploring your dataset
+- Debugging queries
+- Learning GROQ syntax
+
+Access it from the Sanity Studio toolbar to write and test queries against your dataset.
+
+---
+
+## Adding New Plugins
+
+To add a new plugin to the Sanity configuration:
+
+1. Install the plugin package:
+   ```bash
+   pnpm add <plugin-package-name> --filter @repo/sanity
+   ```
+
+2. Import and add to the plugins array in `packages/sanity/src/index.ts`:
+   ```typescript
+   import {pluginName} from 'plugin-package-name'
+   
+   export default defineConfig({
+     plugins: [
+       // ... existing plugins
+       pluginName(),
+     ],
+   })
+   ```
+
+3. Update this documentation with information about the new plugin.

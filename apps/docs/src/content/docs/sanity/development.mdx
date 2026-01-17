@@ -1,0 +1,230 @@
+---
+title: Development Guide
+description: Guide for developing and working with the Sanity CMS package
+---
+
+## Package Structure
+
+The Sanity package (`@repo/sanity`) is located at `packages/sanity/` and follows this structure:
+
+```
+packages/sanity/
+├── src/
+│   ├── index.ts                    # Main Sanity configuration
+│   ├── schemaTypes/
+│   │   ├── index.ts                # Schema type exports
+│   │   ├── documents/
+│   │   │   ├── index.ts            # Document type exports
+│   │   │   └── settings.ts         # Settings document
+│   │   └── objects/
+│   │       └── index.ts            # Object type exports
+│   └── structure/
+│       └── index.ts                # Custom structure configuration
+├── package.json
+├── tsconfig.json
+└── eslint.config.mjs
+```
+
+## Configuration
+
+The main Sanity configuration is defined in `packages/sanity/src/index.ts`:
+
+```typescript
+import {defineConfig} from 'sanity'
+import {structureTool} from 'sanity/structure'
+import {visionTool} from '@sanity/vision'
+import {schemaTypes} from './schemaTypes'
+import {media} from 'sanity-plugin-media'
+import {singletonTools} from 'sanity-plugin-singleton-management'
+
+export default defineConfig({
+  name: 'default',
+  title: SITE_NAME,
+  projectId: 'dm359cdv',
+  dataset: 'production',
+  plugins: [structureTool(), visionTool(), media(), singletonTools()],
+  schema: {
+    types: schemaTypes,
+  },
+})
+```
+
+## Using the Package
+
+The Sanity package is consumed by the Studio app at `apps/studio/`:
+
+```typescript
+// apps/studio/sanity.config.ts
+export {default} from '@repo/sanity'
+```
+
+This allows the Studio app to use the shared configuration without duplicating code.
+
+## Development Workflow
+
+### Running the Studio
+
+To start the Sanity Studio in development mode:
+
+```bash
+cd apps/studio
+pnpm dev
+```
+
+This will start the Studio at `http://localhost:3333` (or the next available port).
+
+### Building the Studio
+
+To build the Studio for production:
+
+```bash
+cd apps/studio
+pnpm build
+```
+
+### Deploying the Studio
+
+To deploy the Studio to Sanity's hosting:
+
+```bash
+cd apps/studio
+pnpm deploy
+```
+
+## Adding Schema Types
+
+### Adding a Document Type
+
+1. Create a new file in `packages/sanity/src/schemaTypes/documents/`:
+
+```typescript
+import {defineField, defineType} from 'sanity'
+
+export const myDocument = defineType({
+  name: 'myDocument',
+  title: 'My Document',
+  type: 'document',
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    // ... more fields
+  ],
+})
+```
+
+2. Export it from `packages/sanity/src/schemaTypes/documents/index.ts`:
+
+```typescript
+import {settings} from './settings'
+import {myDocument} from './my-document'
+
+export const schemaDocuments = [settings, myDocument]
+```
+
+3. The document will automatically appear in the Studio.
+
+### Adding an Object Type
+
+1. Create a new file in `packages/sanity/src/schemaTypes/objects/`:
+
+```typescript
+import {defineType} from 'sanity'
+
+export const myObject = defineType({
+  name: 'myObject',
+  title: 'My Object',
+  type: 'object',
+  fields: [
+    // ... field definitions
+  ],
+})
+```
+
+2. Export it from `packages/sanity/src/schemaTypes/objects/index.ts`:
+
+```typescript
+import {myObject} from './my-object'
+
+export const schemaObjects = [myObject]
+```
+
+3. Use it in document fields:
+
+```typescript
+defineField({
+  name: 'myField',
+  type: 'myObject',
+})
+```
+
+## Custom Structure
+
+Custom structure configuration can be added in `packages/sanity/src/structure/index.ts`. This allows you to customize the document structure and navigation in the Studio.
+
+Currently, the structure file is empty, using Sanity's default structure. To customize:
+
+```typescript
+import {StructureBuilder} from 'sanity/structure'
+
+export const structure = (S: StructureBuilder) => {
+  return S.list()
+    .title('Content')
+    .items([
+      // Custom structure items
+    ])
+}
+```
+
+Then import and use it in the main config:
+
+```typescript
+import {structure} from './structure'
+
+export default defineConfig({
+  // ... other config
+  structure,
+})
+```
+
+## TypeScript Support
+
+The package uses TypeScript with strict type checking. Schema types are automatically typed, and you can generate TypeScript types from your Sanity schema using `@sanity/typegen` or similar tools.
+
+## Linting
+
+The package uses ESLint with Sanity's recommended configuration:
+
+```bash
+pnpm lint
+```
+
+## Dependencies
+
+Key dependencies:
+
+- `sanity` (^5.4.0) - Core Sanity framework
+- `@sanity/vision` (^5.4.0) - GROQ query tool
+- `sanity-plugin-media` (^4.1.1) - Media browser plugin
+- `sanity-plugin-singleton-management` (^1.0.6) - Singleton management
+- `react` (^19.1) - React framework
+- `styled-components` (^6.1.18) - Styling
+
+## Best Practices
+
+1. **Keep schemas organized**: Group related document types together
+2. **Use TypeScript**: Leverage type safety for schema definitions
+3. **Document your schemas**: Add descriptions and help text to fields
+4. **Validate fields**: Use validation rules to ensure data quality
+5. **Use singletons appropriately**: Only use singleton documents for truly unique content
+6. **Test queries**: Use the Vision tool to test GROQ queries before using them in code
+
+## Resources
+
+- [Sanity Documentation](https://www.sanity.io/docs)
+- [GROQ Query Language](https://www.sanity.io/docs/groq)
+- [Schema Types Reference](https://www.sanity.io/docs/schema-types)
+- [Sanity Studio Customization](https://www.sanity.io/docs/structure-builder)

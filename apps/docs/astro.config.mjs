@@ -12,6 +12,14 @@ export default defineConfig({
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
 			sidebar: [
 				{
+					label: 'Project Overview',
+					slug: 'index',
+				},
+				{
+					label: 'Sanity',
+					autogenerate: { directory: 'sanity' },
+				},
+				{
 					label: 'Guides',
 					items: [
 						// Each item here is one entry in the navigation menu.

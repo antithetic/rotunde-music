@@ -1,40 +1,114 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
-hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
-  actions:
-    - text: Example Guide
-      link: /guides/example/
-      icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
-      variant: minimal
+title: Rotunde Music
+description: Documentation for the Rotunde Music project
+# template: splash
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Project Overview
+
+**Rotunde Music** is a modern monorepo project built with Turborepo, managing multiple applications and shared packages for a music-focused content management system.
+
+### Architecture
+
+This project uses a **monorepo architecture** powered by:
+- **Turborepo** - High-performance build system
+- **pnpm** - Fast, disk space efficient package manager
+- **TypeScript** - Type-safe development across all packages
+
+## Applications
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="📚 Docs" icon="document">
+		This documentation site built with **Astro Starlight**. Provides comprehensive documentation for the project, including Sanity CMS configuration, schema references, and development guides.
 	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
+	<Card title="🎨 Studio" icon="setting">
+		**Sanity Studio** application for content management. Uses the shared `@repo/sanity` package for configuration. Access the CMS interface for managing content.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	<Card title="🌐 Web" icon="globe">
+		Main **Vite-based** web application. A TypeScript application that consumes shared UI components and constants from workspace packages.
 	</Card>
 </CardGrid>
+
+## Shared Packages
+
+<CardGrid stagger>
+	<Card title="@repo/constants" icon="code">
+		Shared constants used across the monorepo, including site configuration, Sanity project settings, and environment variables.
+	</Card>
+	<Card title="@repo/sanity" icon="setting">
+		Centralized Sanity CMS configuration package. Defines schema types, plugins, and Studio configuration shared by the Studio app.
+	</Card>
+	<Card title="@repo/ui" icon="paintbrush">
+		Shared UI component library with reusable components and utilities used across applications.
+	</Card>
+	<Card title="@repo/typescript-config" icon="code">
+		Shared TypeScript configuration presets for consistent type checking across all packages.
+	</Card>
+	<Card title="@repo/eslint-config" icon="check">
+		Shared ESLint configuration ensuring consistent code quality and style across the monorepo.
+	</Card>
+</CardGrid>
+
+## Quick Start
+
+### Prerequisites
+
+- **Node.js** (v18 or higher)
+- **pnpm** (v8.15.6) - Install with `npm install -g pnpm@8.15.6`
+
+### Development
+
+Run all applications in development mode:
+
+```bash
+pnpm dev
+```
+
+Run specific tasks:
+
+```bash
+# Build all packages
+pnpm build
+
+# Lint all packages
+pnpm lint
+
+# Format code
+pnpm format
+```
+
+### Project Structure
+
+```
+rotunde-music/
+├── apps/
+│   ├── docs/          # Astro Starlight documentation site
+│   ├── studio/        # Sanity Studio application
+│   └── web/           # Vite web application
+├── packages/
+│   ├── constants/     # Shared constants
+│   ├── eslint-config/ # ESLint configuration
+│   ├── sanity/        # Sanity CMS configuration
+│   ├── typescript-config/ # TypeScript configs
+│   └── ui/            # Shared UI components
+└── turbo.json         # Turborepo configuration
+```
+
+## Key Technologies
+
+- **Astro** - Documentation framework
+- **Sanity CMS** - Headless content management
+- **Vite** - Fast build tool
+- **TypeScript** - Type safety
+- **Turborepo** - Monorepo build system
+
+## Documentation
+
+Explore the documentation to learn more about:
+
+- [Sanity CMS Configuration](/sanity/) - Complete guide to the CMS setup
+- [Schema Reference](/sanity/schema/) - Document and object type definitions
+- [Plugins](/sanity/plugins/) - Installed Sanity plugins and tools
+- [Development Guide](/sanity/development/) - How to work with the Sanity package

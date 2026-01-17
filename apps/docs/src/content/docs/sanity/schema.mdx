@@ -1,0 +1,179 @@
+---
+title: Schema Reference
+description: Complete reference for Sanity schema types and document structures
+---
+
+## Overview
+
+This page documents all schema types defined in the Sanity configuration. Schema types are organized into two categories: **Documents** and **Objects**.
+
+## Documents
+
+Documents are the main content types in Sanity. They represent standalone pieces of content that can be created, edited, and managed independently.
+
+### Settings
+
+**Type**: `settings`  
+**Title**: Settings  
+**Singleton**: Yes
+
+A singleton document for managing site-wide settings and configuration.
+
+#### Fields
+
+| Field Name | Type | Description | Required | Default |
+|------------|------|-------------|----------|---------|
+| `title` | `string` | Site title | No | `"Rotunde Music"` (read-only, hidden) |
+| `url` | `url` | Site URL | No | `"https://rotunde.music"` |
+| `description` | `text` | Site description | No | - |
+| `keywords` | `array<string>` | SEO keywords | No | - |
+
+#### Usage Example
+
+```typescript
+import {defineField, defineType} from 'sanity'
+
+export const settings = defineType({
+  name: 'settings',
+  title: 'Settings',
+  type: 'document',
+  options: {
+    singleton: true,
+  },
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+      initialValue: SITE_NAME,
+    }),
+    defineField({
+      name: 'url',
+      title: 'URL',
+      type: 'url',
+      initialValue: SITE_URL.toString(),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      rows: 3,
+    }),
+    defineField({
+      name: 'keywords',
+      title: 'Keywords',
+      type: 'array',
+      of: [{type: 'string'}],
+    }),
+  ],
+})
+```
+
+#### GROQ Query Example
+
+```groq
+*[_type == "settings"][0] {
+  title,
+  url,
+  description,
+  keywords
+}
+```
+
+## Objects
+
+Objects are reusable field types that can be embedded within documents or other objects. They are not standalone content types.
+
+Currently, no custom object types are defined in this project.
+
+## Schema Structure
+
+The schema types are organized in the following structure:
+
+```
+packages/sanity/src/schemaTypes/
+├── index.ts              # Main export combining all schema types
+├── documents/
+│   ├── index.ts          # Document type exports
+│   └── settings.ts       # Settings document definition
+└── objects/
+    └── index.ts          # Object type exports (currently empty)
+```
+
+## Adding New Schema Types
+
+### Adding a New Document Type
+
+1. Create a new file in `packages/sanity/src/schemaTypes/documents/`:
+   ```typescript
+   // packages/sanity/src/schemaTypes/documents/my-document.ts
+   import {defineType} from 'sanity'
+
+   export const myDocument = defineType({
+     name: 'myDocument',
+     title: 'My Document',
+     type: 'document',
+     fields: [
+       // ... field definitions
+     ],
+   })
+   ```
+
+2. Export it from `packages/sanity/src/schemaTypes/documents/index.ts`:
+   ```typescript
+   import {myDocument} from './my-document'
+   
+   export const schemaDocuments = [settings, myDocument]
+   ```
+
+3. The document will automatically be included in the schema.
+
+### Adding a New Object Type
+
+1. Create a new file in `packages/sanity/src/schemaTypes/objects/`:
+   ```typescript
+   // packages/sanity/src/schemaTypes/objects/my-object.ts
+   import {defineType} from 'sanity'
+
+   export const myObject = defineType({
+     name: 'myObject',
+     title: 'My Object',
+     type: 'object',
+     fields: [
+       // ... field definitions
+     ],
+   })
+   ```
+
+2. Export it from `packages/sanity/src/schemaTypes/objects/index.ts`:
+   ```typescript
+   import {myObject} from './my-object'
+   
+   export const schemaObjects = [myObject]
+   ```
+
+3. The object will automatically be available for use in document fields.
+
+## Field Types Reference
+
+Common field types available in Sanity:
+
+- `string` - Text input
+- `text` - Multi-line text area
+- `number` - Numeric input
+- `boolean` - Checkbox
+- `date` - Date picker
+- `datetime` - Date and time picker
+- `url` - URL input
+- `email` - Email input
+- `slug` - URL-friendly identifier
+- `image` - Image upload
+- `file` - File upload
+- `array` - List of items
+- `object` - Nested object
+- `reference` - Reference to another document
+- `block` - Rich text content
+
+For a complete list, see the [Sanity Field Types documentation](https://www.sanity.io/docs/schema-types).

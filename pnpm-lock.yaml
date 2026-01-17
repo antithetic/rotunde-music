@@ -77,6 +77,8 @@ importers:
         specifier: ^5.1.4
         version: 5.1.4
 
+  packages/constants: {}
+
   packages/eslint-config:
     dependencies:
       '@typescript-eslint/eslint-plugin':
@@ -106,10 +108,16 @@ importers:
       sanity-plugin-media:
         specifier: ^4.1.1
         version: 4.1.1(@types/react@19.2.8)(react-dom@19.2.3)(react-is@19.2.3)(react@19.2.3)(sanity@5.4.0)(styled-components@6.3.8)
+      sanity-plugin-singleton-management:
+        specifier: ^1.0.6
+        version: 1.0.6(react-dom@19.2.3)(react@19.2.3)(sanity@5.4.0)
       styled-components:
         specifier: ^6.1.18
         version: 6.3.8(react-dom@19.2.3)(react@19.2.3)
     devDependencies:
+      '@repo/constants':
+        specifier: workspace:*
+        version: link:../constants
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
@@ -9843,6 +9851,21 @@ packages:
       - '@types/react'
       - debug
       - supports-color
+    dev: false
+
+  /sanity-plugin-singleton-management@1.0.6(react-dom@19.2.3)(react@19.2.3)(sanity@5.4.0):
+    resolution: {integrity: sha512-BHw9Bn668bKisN8gi1c+fXb43wMwiIL+52qCAmQ8g/d4enNC7jlEZGgNO5zILLwGbCEd/9sPlKZZ3/nw6yXwEg==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      react: ^18 || ^19.2.1
+      sanity: ^3 || ^4 || ^5.0.0-0
+    dependencies:
+      '@sanity/icons': 3.7.4(react@19.2.3)
+      '@sanity/incompatible-plugin': 1.0.5(react-dom@19.2.3)(react@19.2.3)
+      react: 19.2.3
+      sanity: 5.4.0(@portabletext/sanity-bridge@2.0.0)(@types/react@19.2.8)(react-dom@19.2.3)(react@19.2.3)(styled-components@6.3.8)(typescript@5.9.3)
+    transitivePeerDependencies:
+      - react-dom
     dev: false
 
   /sanity@5.4.0(@portabletext/sanity-bridge@2.0.0)(@types/react@19.2.8)(react-dom@19.2.3)(react@19.2.3)(styled-components@6.3.8)(typescript@5.9.3):

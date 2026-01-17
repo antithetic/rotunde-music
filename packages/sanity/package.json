@@ -5,15 +5,20 @@
   "exports": {
     ".": "./src/index.ts"
   },
+  "scripts": {
+    "lint": "eslint \"src/**/*.ts\""
+  },
   "dependencies": {
     "@sanity/vision": "^5.4.0",
     "react": "^19.1",
     "react-dom": "^19.1",
     "sanity": "^5.4.0",
     "sanity-plugin-media": "^4.1.1",
+    "sanity-plugin-singleton-management": "^1.0.6",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
+    "@repo/constants": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@sanity/eslint-config-studio": "^6.0.0",
     "@types/react": "^19.1",

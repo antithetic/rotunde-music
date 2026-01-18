@@ -103,7 +103,7 @@ export const page = defineType({
     }),
     // Author/Editor Tracking
     defineField({
-      name: 'creatrdAt',
+      name: 'createdAt',
       type: 'datetime',
       title: 'Date created',
       description: 'Date and time when this page was created',

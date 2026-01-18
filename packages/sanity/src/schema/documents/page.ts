@@ -133,4 +133,18 @@ export const page = defineType({
       group: GROUP.SETTINGS,
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'slug.current',
+      media: 'ogImage',
+    },
+    prepare({title, subtitle, media}) {
+      return {
+        title: title,
+        subtitle: subtitle ? `/${subtitle}` : 'No slug set',
+        media: media,
+      }
+    },
+  },
 })

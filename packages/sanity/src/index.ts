@@ -8,7 +8,7 @@ import {singletonTools} from 'sanity-plugin-singleton-management'
 import {schemaTypes} from './schema'
 
 export default defineConfig({
-  name: 'default',
+  name: 'rotunde',
   title: SITE_NAME,
 
   projectId: 'dm359cdv',

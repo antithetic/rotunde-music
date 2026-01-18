@@ -1,9 +1,11 @@
+import {File} from 'lucide-react'
 import {defineField, defineType} from 'sanity'
 
 export const page = defineType({
   name: 'page',
   title: 'Page',
   type: 'document',
+  icon: File,
   description:
     "Create a new page for your website, like an 'About Us' or 'Contact' page. Each page has its own web address and content that you can customize.",
   fields: [

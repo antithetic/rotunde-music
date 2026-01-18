@@ -1,10 +1,12 @@
 import {SITE_NAME, SITE_URL} from '@repo/constants'
+import {Cog} from 'lucide-react'
 import {defineField, defineType} from 'sanity'
 
 export const settings = defineType({
   name: 'settings',
   title: 'Settings',
   type: 'document',
+  icon: Cog,
   options: {
     singleton: true, // Identify this document as a singleton
   },

@@ -1,7 +1,6 @@
 import {File} from 'lucide-react'
 import {defineField, defineType} from 'sanity'
 
-import {AutoUpdateDatetimeInput} from '../../components/AutoUpdateDatetimeInput'
 import {GROUP, GROUPS} from '../../utils/groups'
 
 export const page = defineType({

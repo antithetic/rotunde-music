@@ -44,29 +44,3 @@ export const SETTINGS_GROUPS: FieldGroupDefinition[] = [
     title: 'SEO & Social',
   },
 ]
-
-// export const GROUPS: FieldGroupDefinition[] = [
-//   // { name: CONST.MAIN_CONTENT, default: true },
-//   {
-//     name: GROUP.MAIN_CONTENT,
-//     icon: ComposeIcon,
-//     title: "Content",
-//     default: true,
-//   },
-//   { name: GROUP.SEO, icon: SearchIcon, title: "SEO" },
-//   {
-//     name: GROUP.OG,
-//     icon: InsertAboveIcon,
-//     title: "Open Graph",
-//   },
-//   {
-//     name: GROUP.CARD,
-//     icon: BlockElementIcon,
-//     title: "Card",
-//   },
-//   {
-//     name: GROUP.RELATED,
-//     icon: InlineElementIcon,
-//     title: "Related",
-//   },
-// ];

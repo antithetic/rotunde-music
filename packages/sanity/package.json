@@ -17,6 +17,7 @@
     "sanity-plugin-media": "^4.1.1",
     "sanity-plugin-singleton-management": "^1.0.6",
     "sanity-plugin-tags-v4": "^1.0.3",
+    "sanity-plugin-user-select-input": "^2.0.1",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {

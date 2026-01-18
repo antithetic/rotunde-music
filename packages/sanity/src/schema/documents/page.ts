@@ -1,6 +1,7 @@
 import {File} from 'lucide-react'
 import {defineField, defineType} from 'sanity'
 
+import {AutoUpdateDatetimeInput} from '../../components/AutoUpdateDatetimeInput'
 import {GROUP, GROUPS} from '../../utils/groups'
 
 export const page = defineType({
@@ -103,18 +104,18 @@ export const page = defineType({
     // Author/Editor Tracking
     defineField({
       name: 'createdBy',
-      type: 'string',
+      type: 'userSelect',
       title: 'Created By',
       description: 'User who created this page',
-      readOnly: true,
+      // readOnly: true,
       group: GROUP.SETTINGS,
     }),
     defineField({
       name: 'lastModifiedBy',
-      type: 'string',
+      type: 'userSelect',
       title: 'Last Modified By',
       description: 'User who last modified this page',
-      readOnly: true,
+      // readOnly: true,
       group: GROUP.SETTINGS,
     }),
     defineField({
@@ -122,7 +123,6 @@ export const page = defineType({
       type: 'datetime',
       title: 'Last Modified Date',
       description: 'Date and time when this page was last modified',
-      readOnly: true,
       group: GROUP.SETTINGS,
     }),
   ],

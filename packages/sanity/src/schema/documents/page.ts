@@ -17,5 +17,21 @@ export const page = defineType({
         'The main heading that appears at the top of your page and in browser tabs',
       validation: (Rule) => Rule.required().error('A page title is required'),
     }),
+    defineField({
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      description:
+        'The URL-friendly version of the page title, used in the web address',
+      options: {
+        source: 'title',
+      },
+    }),
+    defineField({
+      name: 'content',
+      title: 'Content',
+      type: 'array',
+      of: [{type: 'block'}],
+    }),
   ],
 })

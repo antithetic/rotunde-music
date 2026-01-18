@@ -6,6 +6,10 @@ export const GROUP = {
   CARD: 'card',
   RELATED: 'related',
   OG: 'og',
+  // Settings groups
+  GENERAL_INFO: 'general-info',
+  OPERATIONS: 'operations',
+  SEO_SOCIAL: 'seo-social',
 }
 
 export const GROUPS: FieldGroupDefinition[] = [
@@ -13,6 +17,22 @@ export const GROUPS: FieldGroupDefinition[] = [
     name: GROUP.MAIN_CONTENT,
     title: 'Content',
     default: true,
+  },
+]
+
+export const SETTINGS_GROUPS: FieldGroupDefinition[] = [
+  {
+    name: GROUP.GENERAL_INFO,
+    title: 'General Information',
+    default: true,
+  },
+  {
+    name: GROUP.OPERATIONS,
+    title: 'Operations',
+  },
+  {
+    name: GROUP.SEO_SOCIAL,
+    title: 'SEO & Social',
   },
 ]
 

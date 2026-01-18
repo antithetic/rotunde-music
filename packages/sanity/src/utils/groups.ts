@@ -1,3 +1,5 @@
+import type {FieldGroupDefinition} from 'sanity'
+
 export const GROUP = {
   SEO: 'seo',
   MAIN_CONTENT: 'main-content',
@@ -5,6 +7,14 @@ export const GROUP = {
   RELATED: 'related',
   OG: 'og',
 }
+
+export const GROUPS: FieldGroupDefinition[] = [
+  {
+    name: GROUP.MAIN_CONTENT,
+    title: 'Content',
+    default: true,
+  },
+]
 
 // export const GROUPS: FieldGroupDefinition[] = [
 //   // { name: CONST.MAIN_CONTENT, default: true },

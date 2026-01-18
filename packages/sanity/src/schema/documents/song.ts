@@ -27,7 +27,34 @@ export const song = defineType({
       title: 'Release Date',
       type: 'number',
       description: 'Year of release. e.g 1977',
-      validation: (rule) => rule.min(4).max(4),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+      },
+      validation: (Rule) => Rule.required().error('A song slug is required'),
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      artist: 'artist',
+      album: 'album',
+      year: 'releaseDate',
+    },
+    prepare({title, artist, album, year}) {
+      const parts = []
+      if (artist) parts.push(artist)
+      if (album) parts.push(album)
+      if (year) parts.push(`${year}`)
+
+      return {
+        title: title,
+        subtitle: parts.length > 0 ? parts.join(' - ') : undefined,
+      }
+    },
+  },
 })

@@ -232,6 +232,9 @@ export const settings = defineType({
       type: 'tags',
       description: 'Keywords for search engine optimization',
       group: GROUP.SEO_SOCIAL,
+      options: {
+        includeFromRelated: 'keywords',
+      },
     }),
     defineField({
       name: 'socialMedia',

@@ -18,6 +18,10 @@ export const GROUPS: FieldGroupDefinition[] = [
     title: 'Content',
     default: true,
   },
+  {
+    name: GROUP.SEO,
+    title: 'SEO',
+  },
 ]
 
 export const SETTINGS_GROUPS: FieldGroupDefinition[] = [

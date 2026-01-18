@@ -6,6 +6,7 @@ export const GROUP = {
   CARD: 'card',
   RELATED: 'related',
   OG: 'og',
+  SETTINGS: 'settings',
   // Settings groups
   GENERAL_INFO: 'general-info',
   OPERATIONS: 'operations',
@@ -21,6 +22,10 @@ export const GROUPS: FieldGroupDefinition[] = [
   {
     name: GROUP.SEO,
     title: 'SEO',
+  },
+  {
+    name: GROUP.SETTINGS,
+    title: 'Settings',
   },
 ]
 

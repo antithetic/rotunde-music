@@ -100,5 +100,30 @@ export const page = defineType({
         'The canonical URL for this page (optional, defaults to the page URL)',
       group: GROUP.SEO,
     }),
+    // Author/Editor Tracking
+    defineField({
+      name: 'createdBy',
+      type: 'string',
+      title: 'Created By',
+      description: 'User who created this page',
+      readOnly: true,
+      group: GROUP.SETTINGS,
+    }),
+    defineField({
+      name: 'lastModifiedBy',
+      type: 'string',
+      title: 'Last Modified By',
+      description: 'User who last modified this page',
+      readOnly: true,
+      group: GROUP.SETTINGS,
+    }),
+    defineField({
+      name: 'lastModifiedAt',
+      type: 'datetime',
+      title: 'Last Modified Date',
+      description: 'Date and time when this page was last modified',
+      readOnly: true,
+      group: GROUP.SETTINGS,
+    }),
   ],
 })

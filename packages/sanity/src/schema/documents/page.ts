@@ -103,6 +103,14 @@ export const page = defineType({
     }),
     // Author/Editor Tracking
     defineField({
+      name: 'creatrdAt',
+      type: 'datetime',
+      title: 'Date created',
+      description: 'Date and time when this page was created',
+      group: GROUP.SETTINGS,
+      initialValue: () => new Date().toISOString(),
+    }),
+    defineField({
       name: 'createdBy',
       type: 'userSelect',
       title: 'Created By',
@@ -111,18 +119,18 @@ export const page = defineType({
       group: GROUP.SETTINGS,
     }),
     defineField({
+      name: 'lastModifiedAt',
+      type: 'datetime',
+      title: 'Last Modified Date',
+      description: 'Date and time when this page was last modified',
+      group: GROUP.SETTINGS,
+    }),
+    defineField({
       name: 'lastModifiedBy',
       type: 'userSelect',
       title: 'Last Modified By',
       description: 'User who last modified this page',
       // readOnly: true,
-      group: GROUP.SETTINGS,
-    }),
-    defineField({
-      name: 'lastModifiedAt',
-      type: 'datetime',
-      title: 'Last Modified Date',
-      description: 'Date and time when this page was last modified',
       group: GROUP.SETTINGS,
     }),
   ],

@@ -179,9 +179,16 @@ export const settings = defineType({
       name: 'ageRestriction',
       title: 'Age Restriction',
       type: 'string',
-      description: 'e.g., "21+", "18+", "All Ages"',
-      initialValue: '21+',
+      description: 'Select age restrictions (e.g., "21+", "18+", "All Ages")',
       group: GROUP.OPERATIONS,
+      options: {
+        list: [
+          {title: 'All Ages', value: 'all-ages'},
+          {title: '18+', value: '18+'},
+          {title: '21+', value: '21+'},
+        ],
+        layout: 'radio',
+      },
     }),
     defineField({
       name: 'coverCharge',
@@ -222,8 +229,7 @@ export const settings = defineType({
     defineField({
       name: 'keywords',
       title: 'SEO Keywords',
-      type: 'array',
-      of: [{type: 'string'}],
+      type: 'tags',
       description: 'Keywords for search engine optimization',
       group: GROUP.SEO_SOCIAL,
     }),

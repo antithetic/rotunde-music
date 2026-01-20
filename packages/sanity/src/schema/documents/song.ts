@@ -27,6 +27,7 @@ export const song = defineType({
       title: 'Release Date',
       type: 'number',
       description: 'Year of release. e.g 1977',
+      validation: (Rule) => Rule.min(1900).max(2100).integer(),
     }),
     defineField({
       name: 'slug',

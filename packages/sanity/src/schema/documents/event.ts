@@ -17,6 +17,7 @@ export const event = defineType({
       options: {source: 'name'},
       validation: (rule) =>
         rule.required().error(`Required to generate a page on the website`),
+      hidden: ({document}) => !document?.name,
     }),
     defineField({
       name: 'eventType',
@@ -38,6 +39,16 @@ export const event = defineType({
       name: 'venue',
       type: 'reference',
       to: [{type: 'venue'}],
+      readOnly: ({value, document}) =>
+        !value && document?.eventType === 'virtual',
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          if (value && context?.document?.eventType === 'virtual') {
+            return 'Only in-person events can have a venue'
+          }
+
+          return true
+        }),
     }),
     defineField({
       name: 'headline',
@@ -58,4 +69,32 @@ export const event = defineType({
       type: 'url',
     }),
   ],
+
+  preview: {
+    select: {
+      name: 'name',
+      venue: 'venue.name',
+      artist: 'headline.name',
+      date: 'date',
+      image: 'image',
+    },
+    prepare({name, venue, artist, date, image}) {
+      const nameFormatted = name || 'Untitled event'
+      const dateFormatted = date
+        ? new Date(date).toLocaleDateString(undefined, {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+          })
+        : ''
+
+      return {
+        title: artist ? `${nameFormatted} (${artist})` : nameFormatted,
+        subtitle: venue ? `${dateFormatted} @ ${venue}` : dateFormatted,
+        media: image || Ticket,
+      }
+    },
+  },
 })

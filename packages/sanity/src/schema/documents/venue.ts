@@ -14,6 +14,7 @@ export const venue = defineType({
     }),
     defineField({
       name: 'city',
+      title: 'City',
       type: 'string',
     }),
   ],

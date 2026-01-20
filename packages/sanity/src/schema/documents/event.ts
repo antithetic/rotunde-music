@@ -81,7 +81,7 @@ export const event = defineType({
     prepare({name, venue, artist, date, image}) {
       const nameFormatted = name || 'Untitled event'
       const dateFormatted = date
-        ? new Date(date).toLocaleDateString(undefined, {
+        ? new Date(date).toLocaleString(undefined, {
             month: 'short',
             day: 'numeric',
             year: 'numeric',

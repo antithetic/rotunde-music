@@ -10,5 +10,12 @@
   },
   "dependencies": {
     "astro": "^5.16.11"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "bracketSpacing": false,
+    "singleQuote": true
   }
 }

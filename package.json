@@ -12,5 +12,13 @@
     "turbo": "^2.7.4"
   },
   "packageManager": "pnpm@10.28.0",
-  "name": "with-vite"
+  "name": "with-vite",
+  
+  "prettier": {
+    "semi": false,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "bracketSpacing": false,
+    "singleQuote": true
+  }
 }

@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^9.0.4",
+    "@fontsource-variable/montagu-slab": "^5.2.10",
+    "@lucide/astro": "^0.563.0",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.11",
     "tailwindcss": "^4.1.18"
@@ -20,5 +22,8 @@
     "tabWidth": 2,
     "bracketSpacing": false,
     "singleQuote": true
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19"
   }
 }

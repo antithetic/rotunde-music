@@ -1,0 +1,302 @@
+---
+import ComingSoonLayout from '@/layouts/ComingSoon.astro'
+import Marquee from '@/components/soon/Marquee.astro'
+---
+
+<ComingSoonLayout>
+  <!-- Intro  -->
+  <section class="quadrant-border brutal-section">
+    <header class="brutal-section__header">
+      <div>
+        <h1 class="brutal-section__header-title soon-font-block">Rotonde</h1>
+        <p class="brutal-section__header-location soon-font-block">
+          Hillcrest • San Diego
+        </p>
+      </div>
+      <div class="hidden md:block">
+        <div class="i-lucide:audio-lines text-5xl"></div>
+      </div>
+    </header>
+
+    <div class="brutal-section__hero">
+      <span class="brutal-section__hero-label soon-font-block"
+        >Manifeste No. 03</span
+      >
+      <p class="brutal-section__hero-quote soon-font-serif">
+        "We believe in the warmth of the tube, the imperfection of the furrow,
+        and the patience of the terroir."
+      </p>
+      <div class="brutal-section__hero-text soon-font-sans">
+        <p>
+          Here, sound doesn't fill the space, it defines it. We serve living
+          wines, pressed by hand, diffused through copper and glass circuits,
+          with the warmth of the tube, the imperfection of the groove, and the
+          patience of the terroir.
+        </p>
+      </div>
+    </div>
+    <nav class="brutal-section__nav soon-font-block">
+      <a class="hover:underline underline-offset-8 decoration-4" href="#"
+        >Menu</a
+      >
+      <a class="hover:underline underline-offset-8 decoration-4" href="#"
+        >Programme</a
+      >
+      <a class="hover:underline underline-offset-8 decoration-4" href="#"
+        >Info</a
+      >
+      <a class="bg-brut-black text-copper px-4 py-1" href="#">Réserve</a>
+    </nav>
+  </section>
+
+  <!-- Image section -->
+  <section class="quadrant-border brutal-section__image">
+    <img
+      alt="Vacuum Tube Amplifier"
+      class=""
+      src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzZkvjdV7SwV6D6wmvi_-T0N8kv7w9ovDlhcvC1CZWW7Hi7GgZafjQpCrLFSuPzhOL-l-hQE_YvIb916a5KqQEEr3AytF6DYFhpQdeAH57i6cI7JCJZAwyzxLAiEiHxB4OBVbXAD45VXhBabVF_zVC6HcQusUCSmSJtPYLf26wRCqW3NLSrUra_A1NHxYFMlUfNdZDUb6mjQwVno8uR6Bd6WdVBOJYmHoo-1uIIcTRAM4PdcxO5F9oyD8fV2EyD8AXd8wzJ6Nf_0g"
+    />
+    <div class="brutal-section__image-overlay"></div>
+    <div
+      class="brutal-section__image-overlay-text vertical-text soon-font-block"
+    >
+      Analogique
+    </div>
+    <div class="brutal-section__image-label soon-font-block">
+      McIntosh MC275 • Circa 1961
+    </div>
+  </section>
+
+  <!--  -->
+  <section class="quadrant-border brutal-section__selection">
+    <div>
+      <h2 class="brutal-section__selection-header soon-font-block">
+        La Sélection
+      </h2>
+      <div class="brutal-section__selection-list-container">
+        <div class="space-y-6">
+          <h3 class="brutal-section__selection-list-header soon-font-block">
+            Vins du Moment
+          </h3>
+          <ul class="brutal-section__selection-list space-y-4 soon-font-serif">
+            <li class="brutal-section__selection-list-item">
+              <span>Chenin Blanc 'Les Enfers'</span>
+              <span class="brutal-section__selection-list-item-price">14€</span>
+            </li>
+            <li class="brutal-section__selection-list-item">
+              <span>Grolleau 'Noir de Soif'</span>
+              <span class="brutal-section__selection-list-item-price">11€</span>
+            </li>
+            <li class="brutal-section__selection-list-item">
+              <span>Savagnin 'Sous Voile'</span>
+              <span class="brutal-section__selection-list-item-price">16€</span>
+            </li>
+          </ul>
+        </div>
+        <div class="brutal-section__selection-listening space-y-6">
+          <h3
+            class="brutal-section__selection-listening-header soon-font-block"
+          >
+            Scheduled Listening
+          </h3>
+          <div class="brutal-section__selection-listening-event">
+            <p
+              class="brutal-section__selection-listening-event-time soon-font-block"
+            >
+              18h00 — 20h00
+            </p>
+            <p
+              class="brutal-section__selection-listening-event-name soon-font-serif"
+            >
+              Miles Davis — Kind of Blue (Mono Pressing)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brutal-section__selection-listening-link">
+      <div class="brutal-section__selection-listening-location soon-font-sans">
+        12 Rue des Archives<br />75004 Paris
+      </div>
+      <div class="brutal-section__selection-listening-link-arrow">
+        <div class="brutal-section__selection-listening-link-arrow-icon">
+          <div class="i-lucide:arrow-right icon"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- precision -->
+  <section class="brutal-section--precision quadrant-border">
+    <img
+      alt="Wine Cellar Detail"
+      class="brutal-section--precision-image"
+      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMSye2iorXv6LZVL1LkCyTor4BzF3jKsXJFZMHUnxrJHirVsG-A-AA6gt0_qJaFkBqmzYVwvm_2GA68ekY8o-v-ypMMOYzItMd_duE6mQj9mSwRxiaN7cRoCaVPI-OG1t5x7qDF1lrkrf2h63xSc46YE-yBXEJhT5XVPLaN0EzlnPb-BF34CSUq86Pvb9jjW797rBNi0_HiV3XrzSs00U67xQkcTOuw5GJF-Dy3Y3m37MMD_Gb65StefDFGcUCrMx3F7QXlK0mSEI"
+    />
+    <div class="brutal-section--precision-overlay">
+      <div class="brutal-section--precision-overlay-box">
+        <h2 class="brutal-section--precision-overlay-text soon-font-block">
+          Patience<br />&amp; Précision
+        </h2>
+      </div>
+    </div>
+    <div class="brutal-section--precision-label soon-font-block">
+      <span>Ref. 00-442-99</span>
+      <span>Vol. III</span>
+    </div>
+  </section>
+  <Marquee />
+</ComingSoonLayout>
+
+<style>
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  .quadrant-border {
+    border-color: #0d0d0d;
+    border-width: 4px;
+  }
+  .brutal-section {
+    @apply quadrant-border border-b-4 md:border-r-4 p-8 md:p-16 flex flex-col justify-between;
+  }
+
+  .brutal-section__header {
+    @apply flex justify-between items-start mb-20;
+  }
+
+  .brutal-section__header-title {
+    @apply text-4xl md:text-6xl uppercase leading-[0.85] tracking-tighter block;
+  }
+
+  .brutal-section__header-location {
+    @apply text-xs mt-4 tracking-[0.3em] uppercase opacity-80 block;
+  }
+
+  /* hero */
+  .brutal-section__hero {
+    @apply max-w-md;
+  }
+
+  .brutal-section__hero-label {
+    @apply text-[10px] uppercase tracking-[0.5em] mb-6 block border-b-2 border-brut-black pb-2 w-fit;
+  }
+
+  .brutal-section__hero-quote {
+    @apply text-3xl md:text-4xl italic leading-tight mb-8;
+  }
+
+  .brutal-section__hero-text {
+    @apply text-sm font-bold uppercase tracking-widest leading-relaxed space-y-4;
+  }
+
+  .brutal-section__nav {
+    @apply mt-16 flex flex-wrap gap-x-8 gap-y-4 items-center text-sm uppercase tracking-tighter;
+  }
+
+  .brutal-section__image {
+    @apply border-b-4 p-0 relative overflow-hidden group;
+    & img {
+      @apply w-full h-full object-cover grayscale contrast-150 brightness-75 transition-transform duration-700 group-hover:scale-105;
+    }
+  }
+
+  .brutal-section__image-overlay {
+    @apply absolute inset-0 bg-copper/10 mix-blend-multiply;
+  }
+
+  .brutal-section__image-overlay-text {
+    @apply text-copper  absolute top-8 right-8  text-6xl opacity-10 uppercase tracking-tighter select-none;
+  }
+  .brutal-section__image-label {
+    @apply absolute bottom-0 left-0 bg-brut-black text-copper p-4 text-xs uppercase tracking-widest;
+  }
+
+  .brutal-section__selection {
+    @apply quadrant-border md:border-r-4 border-t-4 p-8 md:p-16 flex flex-col justify-between order-4 md:order-3;
+  }
+
+  .brutal-section__selection-header {
+    @apply text-5xl uppercase mb-12 tracking-tighter;
+  }
+
+  .brutal-section__selection-list-container {
+    @apply grid grid-cols-1 gap-12;
+  }
+
+  .brutal-section__selection-list-header {
+    @apply text-xs uppercase tracking-[0.4em] text-copper-dark border-b border-brut-black/20 pb-2;
+  }
+
+  .brutal-section__selection-list {
+    @apply text-xl italic;
+  }
+  .brutal-section__selection-list-item {
+    @apply flex justify-between items-end border-b border-brut-black/10 pb-1;
+  }
+  .brutal-section__selection-list-item-name {
+  }
+
+  .brutal-section__selection-list-item-price {
+    @apply font-sans text-xs font-bold not-italic;
+  }
+
+  .brutal-section__selection-listening {
+    & h4 {
+      @apply text-xs uppercase tracking-[0.4em] text-copper-dark border-b border-brut-black/20 pb-2;
+    }
+  }
+
+  .brutal-section__selection-listening-event {
+    @apply bg-brut-black text-copper p-6;
+  }
+
+  .brutal-section__selection-listening-event-time {
+    @apply text-[10px] uppercase mb-2;
+  }
+
+  .brutal-section__selection-listening-event-name {
+    @apply text-2xl italic leading-none;
+  }
+
+  .brutal-section__selection-listening-link {
+    @apply mt-12 flex justify-between items-end;
+  }
+  .brutal-section__selection-listening-location {
+    @apply text-[10px] font-bold uppercase tracking-widest max-w-[120px];
+  }
+
+  .brutal-section__selection-listening-link-arrow {
+    @apply flex gap-4;
+  }
+
+  .brutal-section__selection-listening-link-arrow-icon {
+    @apply w-12 h-12 border-4 border-brut-black rounded-full flex items-center justify-center hover:bg-brut-black hover:text-copper transition-colors cursor-pointer;
+    & .icon {
+      @apply text-xl;
+    }
+  }
+
+  .brutal-section--precision {
+    @apply p-0 relative overflow-hidden flex items-center justify-center order-3 md:order-4 border-b-4 md:border-b-0;
+  }
+
+  .brutal-section--precision-image {
+    @apply w-full h-full object-cover grayscale contrast-125 brightness-50 select-none;
+  }
+
+  .brutal-section--precision-overlay {
+    @apply absolute inset-0 flex items-center justify-center p-12 text-center pointer-events-none;
+  }
+
+  .brutal-section--precision-overlay-box {
+    @apply border-4 border-copper p-8;
+  }
+  .brutal-section--precision-overlay-text {
+    @apply select-none text-7xl md:text-9xl uppercase leading-[0.8] tracking-tighter text-copper opacity-90;
+  }
+
+  .brutal-section--precision-label {
+    @apply absolute top-0 left-0 w-full p-4 flex justify-between  text-[10px] uppercase text-copper tracking-widest;
+  }
+</style>

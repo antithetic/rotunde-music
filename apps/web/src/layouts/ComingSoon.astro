@@ -1,0 +1,54 @@
+---
+import '@fontsource/archivo-black'
+
+// Supports weights 400-900
+import '@fontsource-variable/playfair-display'
+
+// Supports weights 100-900
+import '@fontsource-variable/inter'
+
+import '@/styles/coming-soon.css'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rotonde — Hillcrest, CA</title>
+  </head>
+  <body>
+    <main class="brutal-container">
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  body {
+    @apply bg-copper overflow-x-hidden text-brut-black min-h-screen;
+    color: #0d0d0d;
+  }
+
+  .quadrant-border {
+    border-color: #0d0d0d;
+    border-width: 4px;
+  }
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #b85c38;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #0d0d0d;
+  }
+
+  .brutal-container {
+    @apply grid grid-cols-1 md:grid-cols-2 min-h-screen w-full quadrant-border border-b-0;
+  }
+</style>

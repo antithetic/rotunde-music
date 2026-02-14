@@ -6,15 +6,16 @@ import vercel from '@astrojs/vercel';
 import UnoCSS from 'unocss/astro'
 
 
+import react from '@astrojs/react';
+
+
 // https://astro.build/config
 export default defineConfig({
   adapter: vercel(),
   output: 'static',
-  integrations: [
-    UnoCSS({
-      // injectReset: true // or a path to the reset file
-    }),
-  ],
+  integrations: [UnoCSS({
+    // injectReset: true // or a path to the reset file
+  }), react()],
   vite: {
     // @ts-ignore
     plugins: [],

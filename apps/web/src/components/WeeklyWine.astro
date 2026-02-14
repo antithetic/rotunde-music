@@ -1,0 +1,102 @@
+---
+// TODO:
+// add props for dynamic content
+---
+
+<!-- Vins de la Semaine -->
+<section class="weekly-wine">
+  <div class="weekly-wine__media">
+    <h2 class="weekly-wine__heading">Vins de la Semaine</h2>
+    <div class="weekly-wine__image-wrapper brutalist-border">
+      <img
+        alt="Wine Bottle"
+        class="weekly-wine__image"
+        data-alt="Black and white grainy photo of a natural wine bottle"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6wUqLQsMHvBBulwVmx9TJ4LgkccOBx1oo7qiS0kXZQcLxFLY5wDzsyQsZnOiSKP3Z1s3xX6fcBOlJlHzMgpMe5jKa0Cy4vUvlGIRBueGEul8Eckif2U4Rwc_yWJJdGv5aqL-9FqSelUCrLs0nsRYYvcQ1D89z6jSueEt1cGyNbJby9sUb4yfaTqmiCF1DUhrEvCiETvhnzLe2U88TIFstHWL95oz9wqicJtyviK2SjfsDeC4wVuXr-pRDMQlyr2a_QrgB7R02aGk"
+      />
+      <div class="weekly-wine__badge">IN STOCK / LIMITED</div>
+    </div>
+  </div>
+  <div class="weekly-wine__content">
+    <div>
+      <h3 class="weekly-wine__name">"L'Insolent" 2021</h3>
+      <p class="weekly-wine__description">
+        A vibrant, direct-press Cabernet Franc from the Loire Valley. Unfined,
+        unfiltered, and buzzing with electric energy. Notes of wild raspberry
+        and wet stone.
+      </p>
+      <div class="weekly-wine__meta">
+        <p class="weekly-wine__meta-row">
+          <span>Producer</span>
+          <span class="weekly-wine__meta-value">Domaine des Roches</span>
+        </p>
+        <p class="weekly-wine__meta-row">
+          <span>Region</span>
+          <span class="weekly-wine__meta-value">Saumur, France</span>
+        </p>
+        <p class="weekly-wine__meta-row">
+          <span>Grape</span>
+          <span class="weekly-wine__meta-value">100% Cabernet Franc</span>
+        </p>
+      </div>
+    </div>
+    <button class="weekly-wine__cta"> Secure Bottle — €28 </button>
+  </div>
+</section>
+
+<style>
+  /* Block */
+  .weekly-wine {
+    @apply grid grid-cols-1 md:grid-cols-2 border-b-4 border-black;
+  }
+
+  /* Media Column */
+  .weekly-wine__media {
+    @apply p-8 border-b-4 md:border-b-0 md:border-r-4 border-black;
+  }
+
+  .weekly-wine__heading {
+    @apply font-serif-elegant italic text-5xl mb-8 uppercase tracking-tight;
+  }
+
+  .weekly-wine__image-wrapper {
+    @apply bg-black aspect-[3/4] overflow-hidden relative group;
+  }
+
+  .weekly-wine__image {
+    @apply w-full h-full object-cover grainy-bw group-hover:scale-105 transition-transform duration-500;
+  }
+
+  .weekly-wine__badge {
+    @apply absolute bottom-4 left-4 bg-primary px-3 py-1 font-mono-raw text-xs font-bold border-2 border-black;
+  }
+
+  /* Content column */
+  .weekly-wine__content {
+    @apply p-8 flex flex-col justify-between;
+  }
+
+  .weekly-wine__name {
+    @apply font-display font-bold text-3xl mb-4;
+  }
+
+  .weekly-wine__description {
+    @apply font-serif-elegant text-xl leading-relaxed mb-6;
+  }
+
+  .weekly-wine__meta {
+    @apply space-y-2 font-mono-raw text-sm;
+  }
+
+  .weekly-wine__meta-row {
+    @apply flex justify-between border-b border-black/30 pb-1;
+  }
+
+  .weekly-wine__meta-value {
+    @apply font-bold;
+  }
+
+  .weekly-wine__cta {
+    @apply mt-8 bg-black text-primary hover:bg-black/90 px-8 py-6 text-2xl font-bold uppercase transition-colors brutalist-border;
+  }
+</style>

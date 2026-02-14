@@ -1,14 +1,40 @@
 ---
 import Layout from '@layouts/Layout.astro'
+import Container from '@components/Container.astro'
+import Header from '@components/Header.astro'
+import WeeklyWine from '@components/WeeklyWine.astro'
+import ListeningNotes from '@components/ListeningNotes.astro'
 import '@styles/global.css'
 ---
 
 <Layout>
-  <h1>Rotonde</h1>
+  <Container>
+    <Header title="ROTONDE" />
+    <!-- Main Content -->
+    <main>
+      <!-- Intro Section -->
+      <section class="intro">
+        <p class="intro__text">
+          Low intervention wines and high fidelity sound. A weekly dispatch from
+          the intersection of fermentation and frequency.
+        </p>
+      </section>
+      <WeeklyWine />
+      <ListeningNotes />
+    </main>
+  </Container>
 </Layout>
 
 <style>
-  h1 {
-    @apply text-4xl font-bold text-center mt-8;
+  main {
+    @apply flex flex-col;
+  }
+
+  .intro {
+    @apply p-8 border-b-4 border-black;
+  }
+
+  .intro__text {
+    @apply text-3xl font-display leading-tight max-w-2xl;
   }
 </style>

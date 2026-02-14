@@ -1,0 +1,93 @@
+<!-- Listening Notes -->
+<section class="listening-notes">
+  <div class="listening-notes__container">
+    <div class="listening-notes__content">
+      <h2 class="listening-notes__title">Listening Notes</h2>
+      <p class="listening-notes__description">
+        Curated sounds for late night decanting. This week's selection focuses
+        on Japanese environmental ambient and early 80s dub from the On-U Sound
+        catalog.
+      </p>
+      <div class="listening-notes__player">
+        <div class="listening-notes__play-button">
+          <svg
+            class="listening-notes__play-icon"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M8 5v14l11-7z"></path>
+          </svg>
+        </div>
+        <div class="listening-notes__track-info">
+          <span class="listening-notes__track-label">Now Playing</span>
+          <span class="listening-notes__track-title"
+            >Rotunde Mix 014: "Static"</span
+          >
+        </div>
+      </div>
+    </div>
+    <a class="listening-notes__cta" href="#"> Listen on Mixcloud </a>
+  </div>
+</section>
+
+<style>
+  /* Block: listening-notes */
+  .listening-notes {
+    @apply p-8 border-b-4 border-black bg-black text-primary;
+  }
+
+  /* Element: container */
+  .listening-notes__container {
+    @apply flex flex-col md:flex-row justify-between items-start md:items-end gap-8;
+  }
+
+  /* Element: content */
+  .listening-notes__content {
+    @apply max-w-xl;
+  }
+
+  /* Element: title */
+  .listening-notes__title {
+    @apply font-serif-elegant italic text-5xl mb-6 text-primary;
+  }
+
+  /* Element: description */
+  .listening-notes__description {
+    @apply font-display text-lg mb-8 text-primary/80;
+  }
+
+  /* Element: player */
+  .listening-notes__player {
+    @apply flex items-center gap-4;
+  }
+
+  /* Element: play-button */
+  .listening-notes__play-button {
+    @apply w-12 h-12 bg-primary rounded-full flex items-center justify-center border-2 border-black;
+  }
+
+  /* Element: play-icon */
+  .listening-notes__play-icon {
+    @apply w-6 h-6 fill-current text-black;
+  }
+
+  /* Element: track-info */
+  .listening-notes__track-info {
+    @apply flex flex-col;
+  }
+
+  /* Element: track-label */
+  .listening-notes__track-label {
+    @apply font-mono-raw text-xs uppercase block;
+  }
+
+  /* Element: track-title */
+  .listening-notes__track-title {
+    @apply font-bold text-xl uppercase tracking-widest;
+  }
+
+  /* Element: cta */
+  .listening-notes__cta {
+    @apply w-full md:w-auto text-center px-10 py-5 border-2 border-primary hover:bg-primary hover:text-black transition-all font-bold uppercase tracking-tighter;
+  }
+</style>

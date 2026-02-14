@@ -12,7 +12,7 @@ export default defineConfig({
   output: 'static',
   integrations: [
     UnoCSS({
-      injectReset: true // or a path to the reset file
+      // injectReset: true // or a path to the reset file
     }),
   ],
   vite: {

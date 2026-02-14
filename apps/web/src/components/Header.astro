@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string
+  venue?: string
+  city?: string
+  align?: 'right' | 'left' | 'center'
+}
+
+const {
+  title,
+  venue = 'Rotonde Wine & HiFi',
+  city = 'Hillcrest, CA',
+} = Astro.props
+---
+
+<header class={`site-header`}>
+  <div class="site-header__location">
+    <div class="site-header__brand">
+      {venue}<br />
+      {city}
+    </div>
+  </div>
+
+  <h1 class="site-header__title">{title}</h1>
+</header>
+
+<style>
+  .site-header {
+    @apply p-6 border-b-4 border-black;
+  }
+
+  .site-header__location {
+    @apply flex flex-row-reverse mb-8;
+  }
+
+  .site-header__brand {
+    @apply font-mono text-sm font-bold uppercase text-right;
+  }
+
+  .site-header__title {
+    @apply font-display font-bold uppercase text-black mb-4 select-none;
+    line-height: 0.8;
+    font-size: clamp(3rem, 16vw, 12rem);
+  }
+</style>

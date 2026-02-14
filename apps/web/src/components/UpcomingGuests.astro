@@ -1,0 +1,134 @@
+---
+export interface Guest {
+  date: string
+  name: string
+  time: string
+  label: string
+  href?: string
+}
+
+interface Props {
+  title?: string
+  guests?: Guest[]
+}
+
+const {
+  title = 'Upcoming Guests',
+  guests = [
+    {
+      date: '14/10',
+      name: 'Lola Rey',
+      time: '20:00 — 01:00',
+      label: 'Macadam Mambo, FR',
+    },
+    {
+      date: '21/10',
+      name: 'Betty Bangs',
+      time: '22:30',
+      label: 'Dark Skies, SE',
+    },
+    {
+      date: '28/10',
+      name: 'Chef Takuya',
+      time: 'Pop-up Dinner',
+      label: 'Izakaya Takeover',
+    },
+  ],
+} = Astro.props as Props
+---
+
+<!-- Upcoming Guests -->
+<section class="upcoming-guests">
+  <h2 class="upcoming-guests__title">{title}</h2>
+  <div class="upcoming-guests__list">
+    <!-- map thru artists -->
+    {
+      guests.map((guest) => {
+        const ItemContent = (
+          <>
+            <div class="upcoming-guests__list-item">
+              <div class="upcoming-guests__list-event">
+                <span class="upcoming-guests__list-event-date">
+                  {guest.date}
+                </span>
+                <span class="upcoming-guests__list-event-artist font-display">
+                  {guest.name}
+                </span>
+              </div>
+              <div class="upcoming-guests__list-event-info">
+                <span class="upcoming-guests__list-event-time font-mono-raw">
+                  {guest.time}
+                </span>
+                <span class="upcoming-guests__list-event-origins font-serif-elegant">
+                  {guest.label}
+                </span>
+              </div>
+            </div>
+          </>
+        )
+        return guest.href ? (
+          <a
+            href={guest.href}
+            class={`upcoming-guests__item upcoming-guests__item--clickable upcoming-guests__link`}
+            rel="noopener noreferrer"
+            target={guest.href.startsWith('http') ? '_blank' : undefined}
+          >
+            {ItemContent}
+          </a>
+        ) : (
+          <div class="upcoming-guests__item">{ItemContent}</div>
+        )
+      })
+    }
+  </div>
+
+  <style>
+    /* Block: upcoming-guests */
+    .upcoming-guests {
+      @apply p-8;
+    }
+
+    /* Element: title */
+    .upcoming-guests__title {
+      @apply italic text-5xl mb-12 uppercase tracking-tight;
+      font-family: 'Georgia', serif;
+    }
+
+    /* Element: list-container */
+    .upcoming-guests__list {
+      @apply space-y-0;
+      /* &:nth-child(2) {
+        @apply border-0;
+      } */
+    }
+
+    /* Element: list */
+    .upcoming-guests__list-item {
+      @apply group flex flex-col md:flex-row justify-between py-6 border-y-2 border-black -mt-[2px] hover:bg-black hover:text-primary transition-colors cursor-default;
+    }
+
+    /* Element: item */
+    .upcoming-guests__list-event {
+      @apply flex items-center gap-6 px-4;
+    }
+
+    .upcoming-guests__list-event-date {
+      @apply font-mono-raw text-xl;
+    }
+
+    .upcoming-guests__list-event-artist {
+      @apply font-bold text-3xl uppercase;
+    }
+
+    .upcoming-guests__list-event-info {
+      @apply flex items-center gap-8 px-4 mt-2 md:mt-0;
+    }
+    .upcoming-guests__list-event-time {
+      @apply text-sm uppercase;
+    }
+
+    .upcoming-guests__list-event-origins {
+      @apply italic text-lg opacity-60 group-hover:opacity-100;
+    }
+  </style>
+</section>

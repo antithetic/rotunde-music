@@ -9,12 +9,22 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^4.4.2",
     "@astrojs/vercel": "^9.0.4",
-    "@fontsource-variable/montagu-slab": "^5.2.10",
-    "@lucide/astro": "^0.563.0",
-    "@tailwindcss/vite": "^4.1.18",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "astro": "^5.16.11",
-    "tailwindcss": "^4.1.18"
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.90",
+    "@tailwindcss/typography": "^0.5.19",
+    "@unocss/astro": "^66.6.0",
+    "@unocss/preset-icons": "^66.6.0",
+    "@unocss/preset-wind4": "^66.6.0",
+    "@unocss/reset": "^66.6.0",
+    "unocss": "^66.6.0"
   },
   "prettier": {
     "semi": false,
@@ -22,8 +32,5 @@
     "tabWidth": 2,
     "bracketSpacing": false,
     "singleQuote": true
-  },
-  "devDependencies": {
-    "@tailwindcss/typography": "^0.5.19"
   }
 }

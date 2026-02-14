@@ -1,0 +1,91 @@
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="site-footer__container">
+    <div>
+      <h4 class="site-footer__column-title">Location</h4>
+      <p class="site-footer__column-address font-display">
+        3968 5th Ave.<br />Hillcrest
+      </p>
+      <div class="site-footer__column-map">
+        <img
+          alt="Map of Brussels"
+          data-alt="Monochromatic dark map of Brussels city center"
+          data-location="Brussels"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjXvpBzCxvtBBG5hqUHNg9-BgRgRfVKd5wIobg11x6sN5IYgbGOPbAmL5fm8PbdU-nTYZvsTOo6__2RtNjaPfBbbSjCrBamKFsZqg95STlH1l1t21ZQy-ORBCFfuuXQ8pCKmb9kqiW0Pnoukxmy6fVwipnNyTpBfXft8IT1kv_fxei6IYaUVYDlZk_O_zJeyTwCt8n6nqfUEmBlRsuSeAWZnGnLZj8JvrNcToCvUnw0-zY-L1zMjXxxx23ZuhIjAmxMaXe3UNBWUs"
+        />
+      </div>
+    </div>
+    <div>
+      <h4 class="site-footer__column-title">Social</h4>
+      <ul class="site-footer__column-socials">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Mixcloud</a></li>
+        <li><a href="#">Spotify</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__column-last">
+      <div>
+        <h4 class="site-footer__column-title">Legal</h4>
+        <span class="site-footer__column-last-legal">&copy; 2026</span>
+      </div>
+      <div class="site-footer__column-last-year">©26</div>
+    </div>
+  </div>
+  <div
+    class="mt-12 pt-12 border-t border-primary/20 flex flex-col md:flex-row justify-between items-center gap-4"
+  >
+    <span class="font-mono-raw text-[10px] uppercase opacity-40"
+      >All rights reserved to Rotonde Collective. No artificial preservatives.</span
+    >
+    <span class="font-mono-raw text-[10px] uppercase opacity-40"
+      >Designed for enthusiasts of sound &amp; soil.</span
+    >
+  </div>
+</footer>
+
+<style>
+  /* Block: site-footer */
+  .site-footer {
+    @apply bg-black text-primary p-12 mt-12;
+  }
+
+  .site-footer__container {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-12;
+  }
+
+  .site-footer__column-title {
+    @apply font-mono-raw text-xs uppercase mb-6 tracking-widest opacity-60;
+  }
+
+  .site-footer__column-address {
+    @apply text-lg uppercase font-bold;
+  }
+
+  .site-footer__column-map {
+    @apply mt-6 w-full h-32 grayscale invert border border-primary/20;
+  }
+
+  .site-footer__column-map img {
+    @apply w-full h-full object-cover;
+  }
+
+  .site-footer__column-socials {
+    @apply space-y-2 font-display text-xl uppercase font-bold;
+    & a {
+      @apply hover:underline;
+    }
+  }
+
+  .site-footer__column-last {
+    @apply flex flex-col justify-between;
+  }
+
+  .site-footer__column-last-legal {
+    @apply font-mono-raw text-sm hover:line-through;
+  }
+
+  .site-footer__column-last-year {
+    @apply text-[4rem] font-bold mt-8 opacity-20 select-none;
+  }
+</style>

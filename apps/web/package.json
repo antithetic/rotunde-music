@@ -10,11 +10,8 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^9.0.4",
-    "@fontsource-variable/montagu-slab": "^5.2.10",
     "@lucide/astro": "^0.563.0",
-    "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.16.11",
-    "tailwindcss": "^4.1.18"
+    "astro": "^5.16.11"
   },
   "prettier": {
     "semi": false,
@@ -24,6 +21,12 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.19"
+    "@iconify-json/lucide": "^1.2.90",
+    "@tailwindcss/typography": "^0.5.19",
+    "@unocss/astro": "^66.6.0",
+    "@unocss/preset-icons": "^66.6.0",
+    "@unocss/preset-wind4": "^66.6.0",
+    "@unocss/reset": "^66.6.0",
+    "unocss": "^66.6.0"
   }
 }

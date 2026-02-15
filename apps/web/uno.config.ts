@@ -45,6 +45,9 @@ export default defineConfig({
       primary: '#d46211', // Copper
       'background-light': '#d46211', // Overriding background to be the Copper color
       'background-dark': '#221810',
+      copper: '#B85C38',
+      'copper-dark': '#8E4427',
+      'brut-black': '#0D0D0D',
     },
     borderRadius: {
       DEFAULT: '0.125rem',

@@ -1,0 +1,41 @@
+<div class="quadrant-border coming-soon__marquee-container">
+  <div class="soon-font-block coming-soon__marquee">
+    <!-- First half -->
+    <span>Now Spinning: A Love Supreme — John Coltrane</span>
+    <span>•</span>
+    <span>Next: Pharoah Sanders — Karma</span>
+    <span>•</span>
+    <!-- Second half (exact duplicate) -->
+    <span>Now Spinning: A Love Supreme — John Coltrane</span>
+    <span>•</span>
+    <span>Next: Pharoah Sanders — Karma</span>
+    <span>•</span>
+  </div>
+</div>
+
+<style>
+  .quadrant-border {
+    border-color: #0d0d0d;
+    border-width: 4px;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .coming-soon__marquee-container {
+    @apply fixed bottom-0 left-0 w-full bg-brut-black text-copper py-3 border-t-4 border-brut-black z-50 overflow-hidden whitespace-nowrap;
+  }
+
+  .coming-soon__marquee {
+    @apply flex gap-12 text-xs uppercase tracking-widest animate-[marquee_20s_linear_infinite];
+    & :nth-child(even) {
+      @apply opacity-50;
+    }
+  }
+</style>

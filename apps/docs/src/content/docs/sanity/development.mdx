@@ -5,21 +5,18 @@ description: Guide for developing and working with the Sanity CMS package
 
 ## Package Structure
 
-The Sanity package (`@repo/sanity`) is located at `packages/sanity/` and follows this structure:
+The Sanity package (`@repo/sanity`) is at `packages/sanity/`:
 
 ```
 packages/sanity/
 ├── src/
-│   ├── index.ts                    # Main Sanity configuration
-│   ├── schemaTypes/
-│   │   ├── index.ts                # Schema type exports
-│   │   ├── documents/
-│   │   │   ├── index.ts            # Document type exports
-│   │   │   └── settings.ts         # Settings document
-│   │   └── objects/
-│   │       └── index.ts            # Object type exports
-│   └── structure/
-│       └── index.ts                # Custom structure configuration
+│   ├── index.ts              # Main Sanity config (defineConfig)
+│   ├── schema/
+│   │   ├── index.ts          # schemaTypes export
+│   │   ├── documents/        # Document types (settings, artist, event, …)
+│   │   └── objects/          # Object types (currently none)
+│   └── utils/
+│       └── groups.ts         # Field groups (GROUP, GROUPS, SETTINGS_GROUPS)
 ├── package.json
 ├── tsconfig.json
 └── eslint.config.mjs
@@ -27,25 +24,39 @@ packages/sanity/
 
 ## Configuration
 
-The main Sanity configuration is defined in `packages/sanity/src/index.ts`:
+Main config: `packages/sanity/src/index.ts`:
 
 ```typescript
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemaTypes'
-import {media} from 'sanity-plugin-media'
-import {singletonTools} from 'sanity-plugin-singleton-management'
+import { SITE_NAME } from '@repo/constants'
+import { defineConfig } from 'sanity'
+import { structureTool } from 'sanity/structure'
+import { visionTool } from '@sanity/vision'
+import { media } from 'sanity-plugin-media'
+import { references, referencesView } from 'sanity-plugin-references'
+import { singletonTools } from 'sanity-plugin-singleton-management'
+import { tags } from 'sanity-plugin-tags-v4'
+import { userSelect } from 'sanity-plugin-user-select-input'
+
+import { schemaTypes } from './schema'
 
 export default defineConfig({
-  name: 'default',
+  name: 'rotunde',
   title: SITE_NAME,
   projectId: 'dm359cdv',
   dataset: 'production',
-  plugins: [structureTool(), visionTool(), media(), singletonTools()],
-  schema: {
-    types: schemaTypes,
-  },
+  plugins: [
+    structureTool({
+      defaultDocumentNode: (S) =>
+        S.document().views([S.view.form(), referencesView(S)]),
+    }),
+    visionTool(),
+    media(),
+    singletonTools(),
+    tags(),
+    userSelect(),
+    references(),
+  ],
+  schema: { types: schemaTypes },
 })
 ```
 
@@ -95,100 +106,14 @@ pnpm deploy
 
 ### Adding a Document Type
 
-1. Create a new file in `packages/sanity/src/schemaTypes/documents/`:
-
-```typescript
-import {defineField, defineType} from 'sanity'
-
-export const myDocument = defineType({
-  name: 'myDocument',
-  title: 'My Document',
-  type: 'document',
-  fields: [
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    // ... more fields
-  ],
-})
-```
-
-2. Export it from `packages/sanity/src/schemaTypes/documents/index.ts`:
-
-```typescript
-import {settings} from './settings'
-import {myDocument} from './my-document'
-
-export const schemaDocuments = [settings, myDocument]
-```
-
-3. The document will automatically appear in the Studio.
+1. Create `packages/sanity/src/schema/documents/myDocument.ts` and define the type with `defineType` / `defineField`.
+2. Export from `packages/sanity/src/schema/documents/index.ts`: add the import and include it in the `schemaDocuments` array.
+3. The document will appear in the Studio.
 
 ### Adding an Object Type
 
-1. Create a new file in `packages/sanity/src/schemaTypes/objects/`:
-
-```typescript
-import {defineType} from 'sanity'
-
-export const myObject = defineType({
-  name: 'myObject',
-  title: 'My Object',
-  type: 'object',
-  fields: [
-    // ... field definitions
-  ],
-})
-```
-
-2. Export it from `packages/sanity/src/schemaTypes/objects/index.ts`:
-
-```typescript
-import {myObject} from './my-object'
-
-export const schemaObjects = [myObject]
-```
-
-3. Use it in document fields:
-
-```typescript
-defineField({
-  name: 'myField',
-  type: 'myObject',
-})
-```
-
-## Custom Structure
-
-Custom structure configuration can be added in `packages/sanity/src/structure/index.ts`. This allows you to customize the document structure and navigation in the Studio.
-
-Currently, the structure file is empty, using Sanity's default structure. To customize:
-
-```typescript
-import {StructureBuilder} from 'sanity/structure'
-
-export const structure = (S: StructureBuilder) => {
-  return S.list()
-    .title('Content')
-    .items([
-      // Custom structure items
-    ])
-}
-```
-
-Then import and use it in the main config:
-
-```typescript
-import {structure} from './structure'
-
-export default defineConfig({
-  // ... other config
-  structure,
-})
-```
+1. Create a new file in `packages/sanity/src/schema/objects/` and export from `schema/objects/index.ts` in `schemaObjects`.
+2. Use the type in document fields with `type: 'myObject'`.
 
 ## TypeScript Support
 
@@ -206,12 +131,15 @@ pnpm lint
 
 Key dependencies:
 
-- `sanity` (^5.4.0) - Core Sanity framework
-- `@sanity/vision` (^5.4.0) - GROQ query tool
-- `sanity-plugin-media` (^4.1.1) - Media browser plugin
-- `sanity-plugin-singleton-management` (^1.0.6) - Singleton management
-- `react` (^19.1) - React framework
-- `styled-components` (^6.1.18) - Styling
+- `sanity` (^5.4.0) — Core Sanity
+- `@sanity/vision` — GROQ Vision tool
+- `sanity-plugin-media` — Media browser
+- `sanity-plugin-singleton-management` — Singleton tools
+- `sanity-plugin-tags-v4` — Tags field
+- `sanity-plugin-user-select-input` — User picker
+- `sanity-plugin-references` — References view + plugin
+- `react`, `styled-components` — Studio UI
+- `@repo/constants` — SITE_NAME and shared constants
 
 ## Best Practices
 

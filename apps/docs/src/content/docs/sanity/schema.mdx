@@ -5,175 +5,93 @@ description: Complete reference for Sanity schema types and document structures
 
 ## Overview
 
-This page documents all schema types defined in the Sanity configuration. Schema types are organized into two categories: **Documents** and **Objects**.
+Schema types live in **`packages/sanity/src/schema/`**: **documents** (content types) and **objects** (reusable embedded types). The main export is `schemaTypes` in `schema/index.ts`.
+
+## Schema Layout
+
+```
+packages/sanity/src/schema/
+├── index.ts           # schemaTypes = [...schemaDocuments, ...schemaObjects]
+├── documents/
+│   ├── index.ts       # Exports schemaDocuments
+│   ├── settings.ts
+│   ├── artist.ts
+│   ├── contact.ts
+│   ├── event.ts
+│   ├── newsletter.ts
+│   ├── page.ts
+│   ├── playlist.ts
+│   ├── song.ts
+│   └── venue.ts
+└── objects/
+    └── index.ts       # schemaObjects (currently empty)
+```
 
 ## Documents
 
-Documents are the main content types in Sanity. They represent standalone pieces of content that can be created, edited, and managed independently.
+### Settings (`settings`) — Singleton
 
-### Settings
+Site-wide venue and SEO. Uses **groups** from `utils/groups.ts`: General Information, Operations, SEO & Social.
 
-**Type**: `settings`  
-**Title**: Settings  
-**Singleton**: Yes
+| Group | Fields (summary) |
+|-------|-------------------|
+| General | `venueName`, `logo`, `address` (street, city, state, zip, country), `contact` (phone, email, bookingEmail) |
+| Operations | `hours` (mon–sun strings), `booking` (reservationsEnabled, reservationUrl, bookingInstructions), `ageRestriction` (list), `coverCharge` |
+| SEO & Social | `title`, `url` (from constants), `description`, `keywords` (tags), `socialMedia` (facebook, instagram, twitter, youtube, spotify, soundcloud) |
 
-A singleton document for managing site-wide settings and configuration.
+### Artist (`artist`)
 
-#### Fields
+`name`, `description`, `photo`, `contactInfo` (reference → contact).
 
-| Field Name | Type | Description | Required | Default |
-|------------|------|-------------|----------|---------|
-| `title` | `string` | Site title | No | `"Rotunde Music"` (read-only, hidden) |
-| `url` | `url` | Site URL | No | `"https://rotunde.music"` |
-| `description` | `text` | Site description | No | - |
-| `keywords` | `array<string>` | SEO keywords | No | - |
+### Contact (`contact`)
 
-#### Usage Example
+`name`, `phone`, `email`, `notes`. Referenced by Artist and others.
 
-```typescript
-import {defineField, defineType} from 'sanity'
+### Venue (`venue`)
 
-export const settings = defineType({
-  name: 'settings',
-  title: 'Settings',
-  type: 'document',
-  options: {
-    singleton: true,
-  },
-  fields: [
-    defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-      readOnly: true,
-      hidden: true,
-      initialValue: SITE_NAME,
-    }),
-    defineField({
-      name: 'url',
-      title: 'URL',
-      type: 'url',
-      initialValue: SITE_URL.toString(),
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      rows: 3,
-    }),
-    defineField({
-      name: 'keywords',
-      title: 'Keywords',
-      type: 'array',
-      of: [{type: 'string'}],
-    }),
-  ],
-})
-```
+`name`, `city`. Referenced by Event (for in-person events).
 
-#### GROQ Query Example
+### Event (`event`)
 
-```groq
-*[_type == "settings"][0] {
-  title,
-  url,
-  description,
-  keywords
-}
-```
+`name`, `slug` (required), `eventType` (in-person | virtual), `date` (datetime), `doorsOpen` (number), `venue` (reference → venue, for in-person), `headline` (reference → artist), `image`, `details` (block array), `tickets` (url). Preview shows name, artist, date, venue.
+
+### Page (`page`)
+
+Groups: Content, SEO, Settings. `title`, `slug`, `content` (blocks), `metaDescription`, `keywords` (tags), `ogImage`, `ogTitle`, `ogDescription`, `canonicalUrl`, `createdAt`, `createdBy` (userSelect), `lastModifiedAt`, `lastModifiedBy` (userSelect).
+
+### Song (`song`)
+
+`title`, `artist`, `album`, `releaseDate` (year), `slug`, plus other fields. See `packages/sanity/src/schema/documents/song.ts` for full list.
+
+### Playlist (`playlist`)
+
+`name`, `songs` (array of references → song).
+
+### Newsletter (`newsletter`)
+
+`title`.
 
 ## Objects
 
-Objects are reusable field types that can be embedded within documents or other objects. They are not standalone content types.
+No custom object types are defined; `schemaObjects` is an empty array. Inline `object` fields are used (e.g. Settings `address`, `contact`, `socialMedia`).
 
-Currently, no custom object types are defined in this project.
+## Field Groups
 
-## Schema Structure
+- **`utils/groups.ts`** defines `GROUP` constants and group arrays:
+  - **GROUPS** — used by Page (Content, SEO, Settings)
+  - **SETTINGS_GROUPS** — used by Settings (General Information, Operations, SEO & Social)
 
-The schema types are organized in the following structure:
+## Adding New Types
 
-```
-packages/sanity/src/schemaTypes/
-├── index.ts              # Main export combining all schema types
-├── documents/
-│   ├── index.ts          # Document type exports
-│   └── settings.ts       # Settings document definition
-└── objects/
-    └── index.ts          # Object type exports (currently empty)
-```
+### New document
 
-## Adding New Schema Types
+1. Add `packages/sanity/src/schema/documents/myDocument.ts` with `defineType({ name: 'myDocument', type: 'document', fields: [...] })`.
+2. Export from `schema/documents/index.ts`: `import { myDocument } from './myDocument'` and add to `schemaDocuments`.
 
-### Adding a New Document Type
+### New object
 
-1. Create a new file in `packages/sanity/src/schemaTypes/documents/`:
-   ```typescript
-   // packages/sanity/src/schemaTypes/documents/my-document.ts
-   import {defineType} from 'sanity'
+1. Add a file under `schema/objects/` and export from `schema/objects/index.ts` in `schemaObjects`.
 
-   export const myDocument = defineType({
-     name: 'myDocument',
-     title: 'My Document',
-     type: 'document',
-     fields: [
-       // ... field definitions
-     ],
-   })
-   ```
+## Field Types (reference)
 
-2. Export it from `packages/sanity/src/schemaTypes/documents/index.ts`:
-   ```typescript
-   import {myDocument} from './my-document'
-   
-   export const schemaDocuments = [settings, myDocument]
-   ```
-
-3. The document will automatically be included in the schema.
-
-### Adding a New Object Type
-
-1. Create a new file in `packages/sanity/src/schemaTypes/objects/`:
-   ```typescript
-   // packages/sanity/src/schemaTypes/objects/my-object.ts
-   import {defineType} from 'sanity'
-
-   export const myObject = defineType({
-     name: 'myObject',
-     title: 'My Object',
-     type: 'object',
-     fields: [
-       // ... field definitions
-     ],
-   })
-   ```
-
-2. Export it from `packages/sanity/src/schemaTypes/objects/index.ts`:
-   ```typescript
-   import {myObject} from './my-object'
-   
-   export const schemaObjects = [myObject]
-   ```
-
-3. The object will automatically be available for use in document fields.
-
-## Field Types Reference
-
-Common field types available in Sanity:
-
-- `string` - Text input
-- `text` - Multi-line text area
-- `number` - Numeric input
-- `boolean` - Checkbox
-- `date` - Date picker
-- `datetime` - Date and time picker
-- `url` - URL input
-- `email` - Email input
-- `slug` - URL-friendly identifier
-- `image` - Image upload
-- `file` - File upload
-- `array` - List of items
-- `object` - Nested object
-- `reference` - Reference to another document
-- `block` - Rich text content
-
-For a complete list, see the [Sanity Field Types documentation](https://www.sanity.io/docs/schema-types).
+Common types: `string`, `text`, `number`, `boolean`, `datetime`, `url`, `email`, `slug`, `image`, `array`, `object`, `reference`, `block`. This project also uses **`tags`** (sanity-plugin-tags-v4) and **`userSelect`** (sanity-plugin-user-select-input). See [Sanity schema types](https://www.sanity.io/docs/schema-types).

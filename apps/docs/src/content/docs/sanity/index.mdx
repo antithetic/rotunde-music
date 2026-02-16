@@ -5,50 +5,48 @@ description: Overview of the Sanity CMS configuration and setup for Rotunde Musi
 
 ## Project Configuration
 
-The Sanity CMS package (`@repo/sanity`) is a shared package that provides the Sanity Studio configuration for the Rotunde Music project.
+The Sanity CMS is provided by the shared package **`@repo/sanity`**, used by the Studio app at `apps/studio/`.
 
 ### Project Details
 
 - **Project ID**: `dm359cdv`
 - **Dataset**: `production`
-- **Studio Title**: Rotunde Music
+- **Studio Title**: Rotunde Music (from `@repo/constants` `SITE_NAME`)
+- **Config name**: `rotunde`
 - **Package**: `@repo/sanity`
 
 ### Architecture
 
-The Sanity configuration is organized as a monorepo package that can be shared across multiple applications:
-
-- **Package Location**: `packages/sanity/`
-- **Studio App**: `apps/studio/` (uses the shared package)
-- **Schema Types**: Defined in `packages/sanity/src/schemaTypes/`
-- **Structure**: Custom structure configuration in `packages/sanity/src/structure/`
+- **Package**: `packages/sanity/`
+- **Studio app**: `apps/studio/` re-exports the config: `export { default } from '@repo/sanity'`
+- **Schema**: `packages/sanity/src/schema/` — `documents/`, `objects/`, `index.ts`
+- **Utils**: `packages/sanity/src/utils/groups.ts` — field groups for Settings and Page
 
 ### Core Tools
 
-The Sanity Studio includes the following built-in tools:
+- **Structure Tool** — Document list and navigation; includes **References** view per document
+- **Vision Tool** — GROQ query runner
 
-- **Structure Tool**: Default document structure and navigation
-- **Vision Tool**: GROQ query interface for testing queries
+### Document Types
 
-### Schema Types
-
-#### Documents
-
-- **Settings** (`settings`): Singleton document for site-wide settings
-  - Title (read-only, auto-populated)
-  - URL
-  - Description
-  - Keywords (array)
-
-#### Objects
-
-Currently no custom object types are defined.
+| Type       | Description |
+|-----------|-------------|
+| **Settings** | Singleton: venue info, address, hours, booking, SEO & social |
+| **Artist**   | Name, description, photo, optional contact reference |
+| **Contact**  | Name, phone, email, notes (referenced by Artist and others) |
+| **Venue**    | Name, city |
+| **Event**    | Name, slug, type (in-person/virtual), date, doors, venue ref, headline artist, image, details (blocks), tickets URL |
+| **Page**     | Title, slug, content (blocks), SEO (meta, keywords, OG), author/tracking (userSelect, dates) |
+| **Song**     | Title, artist, album, release year, slug, plus other fields |
+| **Playlist** | Name, array of song references |
+| **Newsletter** | Title |
 
 ### Plugins
 
-The project uses the following Sanity plugins:
+- [Media](./plugins#sanity-media-browser) — Media browser
+- [Singleton Management](./plugins#singleton-management) — Singleton documents
+- [Tags](./plugins#tags) — Tag field and related helpers
+- [User Select](./plugins#user-select) — User picker (e.g. “Created by” on Page)
+- [References](./plugins#references) — Reference exploration and document view
 
-- [Sanity Media Browser](./plugins#sanity-media-browser) - Enhanced media management
-- [Singleton Management](./plugins#singleton-management) - Tools for managing singleton documents
-
-See the [Plugins](./plugins) page for detailed information about each plugin.
+See [Plugins](./plugins) for details.

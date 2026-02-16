@@ -1,0 +1,63 @@
+---
+title: Web App
+description: Overview of the Rotunde Music public website (Astro)
+---
+
+## Overview
+
+The public site lives in **`apps/web/`**. It is an **Astro** application with React components, UnoCSS for styles, and Vercel as the deployment target.
+
+## Stack
+
+| Technology | Purpose |
+|------------|--------|
+| **Astro** 5 | Framework, static output |
+| **React** 19 | Interactive components (e.g. islands) |
+| **UnoCSS** | Utility-first CSS (presets: wind, icons) |
+| **@astrojs/vercel** | Build adapter for Vercel |
+| **@astrojs/react** | React integration |
+
+## Structure
+
+```
+apps/web/src/
+├── assets/           # Static assets (e.g. background.svg)
+├── components/       # Astro & React components
+│   ├── soon/         # Coming-soon (e.g. Marquee.astro)
+│   ├── Container.astro
+│   ├── Header.astro, Footer.astro, Nav.astro
+│   ├── ProgrammeGrid.astro, UpcomingGuests.astro
+│   ├── WeeklyWine.astro, ListeningNotes.astro
+│   └── ...
+├── layouts/
+│   ├── Layout.astro
+│   └── ComingSoon.astro
+├── pages/
+│   ├── index.astro
+│   ├── coming-soon.astro
+│   └── programme/
+│       └── index.astro
+└── styles/
+    ├── global.css
+    └── coming-soon.css
+```
+
+## Scripts
+
+From repo root or `apps/web`:
+
+```bash
+pnpm dev     # Dev server
+pnpm build   # Production build
+pnpm preview # Preview production build
+```
+
+## Configuration
+
+- **Config**: `apps/web/astro.config.mjs` — Vercel adapter, UnoCSS, React
+- **UnoCSS**: `apps/web/uno.config.ts` — Presets (e.g. wind, icons)
+- **Fonts**: Uses `@fontsource-variable/inter`, `@fontsource-variable/playfair-display`, `@fontsource/archivo-black` (see `apps/web/package.json`)
+
+## Content
+
+Content is managed in **Sanity** (`@repo/sanity`). The web app can query Sanity via the project id and dataset defined in `@repo/constants` (`SANITY_PROJECT_ID`, `SANITY_DATASET`). Fetch content with the Sanity client and GROQ in Astro pages or API routes as needed.

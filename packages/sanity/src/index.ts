@@ -1,4 +1,4 @@
-import {SITE_NAME} from '@repo/constants'
+import {SITE_NAME, STUDIO_BASEPATH} from '@repo/constants'
 import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
 import type {StructureBuilder} from 'sanity/structure'
@@ -14,7 +14,7 @@ import {schemaTypes} from './schema'
 export default defineConfig({
   name: 'studio',
   title: SITE_NAME,
-
+  basePath: STUDIO_BASEPATH,
   projectId: 'dm359cdv',
   dataset: 'production',
 

@@ -12,8 +12,8 @@ import {userSelect} from 'sanity-plugin-user-select-input'
 import {schemaTypes} from './schema'
 
 export default defineConfig({
+  name: 'rotonde-studio',
   title: SITE_NAME,
-  basePath: STUDIO_BASEPATH,
   projectId: 'dm359cdv',
   dataset: 'production',
 

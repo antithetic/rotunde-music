@@ -1,6 +1,7 @@
-import {SITE_NAME, STUDIO_BASEPATH} from '@repo/constants'
+import {SITE_NAME} from '@repo/constants'
 import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
+import type {Config} from 'sanity'
 import type {StructureBuilder} from 'sanity/structure'
 import {structureTool} from 'sanity/structure'
 import {media} from 'sanity-plugin-media'
@@ -8,14 +9,16 @@ import {references, referencesView} from 'sanity-plugin-references'
 import {singletonTools} from 'sanity-plugin-singleton-management'
 import {tags} from 'sanity-plugin-tags-v4'
 import {userSelect} from 'sanity-plugin-user-select-input'
+import {Wine} from 'lucide-react'
 
 import {schemaTypes} from './schema'
 
-export default defineConfig({
+const config: Config = defineConfig({
   name: 'rotonde-studio',
   title: SITE_NAME,
   projectId: 'dm359cdv',
   dataset: 'production',
+  icon: Wine,
 
   plugins: [
     structureTool({
@@ -34,3 +37,5 @@ export default defineConfig({
     types: schemaTypes,
   },
 })
+
+export default config

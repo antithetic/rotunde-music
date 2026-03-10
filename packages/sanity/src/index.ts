@@ -1,7 +1,8 @@
 import {SITE_NAME} from '@repo/constants'
 import {visionTool} from '@sanity/vision'
-import {defineConfig} from 'sanity'
+import {Wine} from 'lucide-react'
 import type {Config} from 'sanity'
+import {defineConfig} from 'sanity'
 import type {StructureBuilder} from 'sanity/structure'
 import {structureTool} from 'sanity/structure'
 import {media} from 'sanity-plugin-media'
@@ -9,7 +10,6 @@ import {references, referencesView} from 'sanity-plugin-references'
 import {singletonTools} from 'sanity-plugin-singleton-management'
 import {tags} from 'sanity-plugin-tags-v4'
 import {userSelect} from 'sanity-plugin-user-select-input'
-import {Wine} from 'lucide-react'
 
 import {schemaTypes} from './schema'
 
@@ -32,7 +32,9 @@ const config: Config = defineConfig({
     userSelect(),
     references(),
   ],
-
+  releases: {
+    enabled: false,
+  },
   schema: {
     types: schemaTypes,
   },

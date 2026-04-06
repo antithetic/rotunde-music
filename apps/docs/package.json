@@ -10,11 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.0",
-    "@astrojs/starlight": "^0.37.6",
-    "@astrojs/starlight-docsearch": "^0.6.1",
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/starlight": "^0.38.2",
+    "@astrojs/starlight-docsearch": "^0.7.0",
     "@repo/constants": "workspace:*",
-    "astro": "^5.17.2",
+    "astro": "^6.1.4",
     "sharp": "^0.34.2",
     "starlight-theme-flexoki": "^0.2.2"
   }
